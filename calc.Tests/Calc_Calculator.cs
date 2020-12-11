@@ -61,7 +61,7 @@ namespace calc.Tests
             }
             catch (Exception e)
             {
-                Assert.Equal("Negatives not allowed", e.Message);
+                Assert.Contains("Negatives not allowed", e.Message);
             }
         }
 

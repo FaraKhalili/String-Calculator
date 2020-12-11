@@ -8,9 +8,9 @@ namespace calc
         public static void Main(string[] args)
         {
 
-            string str = Console.ReadLine();
+            // string str = Console.ReadLine();
             int result = 0;
-            result = calculator(str);
+            result = calculator("1,2,-3");
             Console.WriteLine(result.ToString());
         }
         public static int calculator(string str)
@@ -54,24 +54,26 @@ namespace calc
         public static int AddArray(String str, string delimeter)
         {
             int result = 0;
+            string strException ="";
            
             string[] strArray = str.Split(delimeter);
 
-            if (str.Contains('-'))
-            {
-                  throw new Exception("Negatives not allowed");
-            }
-
+           
             for (int i = 0; i < strArray.Length; i++)
             {
                 if (strArray[i].Trim() != "")
                 {
-                    int number = int.Parse(strArray[i]);                    
+                    int number = int.Parse(strArray[i]);  
+
+                     if (number < 0)
+                          strException=  strArray[i] + "," ;
                     if (number > 1000)
                         number = 0;
                     result = result + number;
                 }
             }
+            if (!string.IsNullOrEmpty(strException))
+             throw new Exception("Negatives not allowed: "  + strException.Substring(0,strException.Length-1)); 
 
             return result;
         }
