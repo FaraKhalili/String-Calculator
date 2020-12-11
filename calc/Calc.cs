@@ -71,9 +71,6 @@ namespace calc
                         number = 0;
                     result = result + number;
                 }
-
-
-
             }
 
             return result;

@@ -50,6 +50,9 @@ namespace calc.Tests
             res = Calc.calculator(str);
             Assert.Equal(res, 6);
 
+            str = "//$,@\n1$2@$,@3";
+            res = Calc.calculator(str);
+            Assert.Equal(res, 6);
 
             try
             {
