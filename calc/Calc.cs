@@ -15,7 +15,7 @@ namespace calc
         }
         public static int calculator(string str)
         {
-            string delimeter = "";
+            string delimeter = ",";
             int result = 0;
             int index = 0;
 
@@ -29,7 +29,7 @@ namespace calc
                     char[] c;
                     if (delimeter.Length > 1)
                     {
-                        
+
                         for (int i = 0; i < index ; i++)
                         {
                             c = delimeter.Substring(i, 1).ToCharArray();
@@ -43,24 +43,30 @@ namespace calc
 
                 str = str.Replace("\n", "");
             }
+            
+            if (!string.IsNullOrEmpty(str))
+            {
+                result = AddArray(str, delimeter);
+            }
 
-            result = AddArray(str,delimeter);
             return (result);
         }
         public static int AddArray(String str, string delimeter)
         {
             int result = 0;
-            if (delimeter == "")
-                delimeter = ",";
+           
             string[] strArray = str.Split(delimeter);
+
+            if (str.Contains('-'))
+            {
+                  throw new Exception("Negatives not allowed");
+            }
 
             for (int i = 0; i < strArray.Length; i++)
             {
                 if (strArray[i].Trim() != "")
                 {
-                    int number = int.Parse(strArray[i]);
-                    if (number < 0)
-                        throw new Exception("Negatives not allowed");
+                    int number = int.Parse(strArray[i]);                    
                     if (number > 1000)
                         number = 0;
                     result = result + number;
